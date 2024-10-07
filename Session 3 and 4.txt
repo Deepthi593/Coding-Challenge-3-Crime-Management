@@ -1,0 +1,136 @@
+# 1. Accept Fruits and their Prices
+
+def fruits_menu():
+    fruits = []  # To store fruits and prices
+    while True:
+        fruit = input("Enter fruit name (or 'exit' to stop): ")
+        if fruit.lower() in ['exit', 'quit', 'stop']:
+            break
+        price = float(input(f"Enter price for {fruit}: "))
+        fruits.append(fruit)
+        fruits.append(price)
+    
+    print("\nFruit Menu:")
+    for i in range(0, len(fruits), 2):
+        print(f"{i//2 + 1}. {fruits[i]} - ₹{fruits[i+1]} per kg")
+    
+    return fruits
+
+# 1.b. Customer Buy Fruits and Calculate Total
+
+def buy_fruits(fruits):
+    total_price = 0
+    while True:
+        choice = input("Enter the fruit number to buy (or 'done' to finish): ")
+        if choice.lower() in ['done', 'exit', 'quit', 'stop']:
+            break
+        index = (int(choice) - 1) * 2
+        total_price += fruits[index + 1]
+    
+    print(f"\nTotal price of fruits bought: ₹{total_price}")
+
+# 1.c. Show all Fruits in List
+
+def show_fruits(fruits):
+    print("\nAvailable Fruits:")
+    for i in range(0, len(fruits), 2):
+        print(f"{fruits[i]} - ₹{fruits[i+1]} per kg")
+
+# 2. Tuple of Employees and Phone Numbers
+
+def employee_phone_numbers():
+    employees = (
+        (101, ["9876543210"]),
+        (102, ["9234567890"]),
+        (103, ["9012345678", "9001234567"]),
+        (104, ["9987654321"]),
+        (105, ["9823456789"])
+    )
+
+    emp_id = int(input("Enter Employee ID: "))
+    found = False
+    for emp in employees:
+        if emp[0] == emp_id:
+            print(f"Phone numbers for EmpID {emp_id}: {', '.join(emp[1])}")
+            found = True
+            break
+    if not found:
+        print("Employee not found.")
+
+    emp_id_update = int(input("Enter Employee ID to update phone number: "))
+    for emp in employees:
+        if emp[0] == emp_id_update:
+            new_number = input("Enter new phone number: ")
+            emp[1].append(new_number)
+            print(f"Updated phone numbers for EmpID {emp_id_update}: {', '.join(emp[1])}")
+            found = True
+            break
+    if not found:
+        print("Employee not found.")
+
+# 3. Manage Departments with Employees (Dictionary)
+
+def manage_departments():
+    departments = {
+        "HR": ["Alice", "Bob"],
+        "Finance": ["Charlie", "David"],
+        "IT": ["Eve", "Frank"]
+    }
+
+    while True:
+        action = input("\nChoose an action (add/list/add_employee/delete_employee/exit): ").lower()
+        if action == "exit":
+            break
+
+        if action == "add":
+            dept_name = input("Enter new department name: ")
+            employees = input("Enter employees (comma-separated): ").split(", ")
+            departments[dept_name] = employees
+            print(f"Department {dept_name} added with employees: {employees}")
+
+        elif action == "list":
+            dept_name = input("Enter department name: ")
+            if dept_name in departments:
+                print(f"Employees in {dept_name}: {', '.join(departments[dept_name])}")
+            else:
+                print("Department not found.")
+
+        elif action == "add_employee":
+            dept_name = input("Enter department name: ")
+            if dept_name in departments:
+                new_emp = input("Enter new employee name: ")
+                departments[dept_name].append(new_emp)
+                print(f"Added {new_emp} to {dept_name}.")
+            else:
+                print("Department not found.")
+
+        elif action == "delete_employee":
+            dept_name = input("Enter department name: ")
+            if dept_name in departments:
+                emp_name = input("Enter employee name to delete: ")
+                if emp_name in departments[dept_name]:
+                    departments[dept_name].remove(emp_name)
+                    print(f"Removed {emp_name} from {dept_name}.")
+                else:
+                    print(f"{emp_name} not found in {dept_name}.")
+            else:
+                print("Department not found.")
+
+# 4. Fruit Salesman Set Operations
+
+def fruit_salesmen_operations():
+    fruit_salesman1 = {"Apple", "Banana", "Orange"}
+    fruit_salesman2 = {"Banana", "Mango", "Apple", "Grapes"}
+
+    print("Common fruits:", fruit_salesman1 & fruit_salesman2)
+    print("Extra fruits with Salesman1:", fruit_salesman1 - fruit_salesman2)
+    print("Extra fruits with Salesman2:", fruit_salesman2 - fruit_salesman1)
+    print("Total fruits:", fruit_salesman1 | fruit_salesman2)
+
+# Running the programs
+fruits = fruits_menu()
+buy_fruits(fruits)
+show_fruits(fruits)
+employee_phone_numbers()
+manage_departments()
+fruit_salesmen_operations()

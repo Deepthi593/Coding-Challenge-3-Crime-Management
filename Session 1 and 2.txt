@@ -1,0 +1,103 @@
+employees = []
+for i in range(3):  
+    empid = input("Enter Employee ID: ")  
+    empname = input("Enter Employee Name: ") 
+    salary = float(input("Enter Salary: "))
+    tot_deductions= float(input("Enter the tot deductions: "))
+    tot_allowances = float(input("Enter the tot allowances: "))
+    employee = {
+        'ID': empid,
+        'Name': empname,
+        'Salary': salary,
+        'Tot_deductions': tot_deductions,
+        'Tot_allowances': tot_allowances
+    }
+employees.append(employee)
+max_salary_employee = employees[0] 
+min_salary_employee = employees[0]  
+for employee in employees:
+    if employee['Salary'] > max_salary_employee['Salary']:
+        max_salary_employee = employee 
+    if employee['Salary'] < min_salary_employee['Salary']:
+        min_salary_employee = employee  
+print("\nEmployee with Maximum Salary:")
+
+# To find the maximum
+
+print(f"ID: {max_salary_employee['ID']}, Name: {max_salary_employee['Name']}, Salary: {max_salary_employee['Salary']}")
+
+# To find the minimum
+
+print("\nEmployee with Minimum Salary:")
+print(f"ID: {min_salary_employee['ID']}, Name: {min_salary_employee['Name']}, Salary: {min_salary_employee['Salary']}")
+def integer_operations():
+    integers = []
+
+    while True:
+        user_input = input("Enter an integer (or type 'exit' to finish): ")
+        if user_input.lower() == 'exit':
+            break
+        try:
+            integers.append(int(user_input))
+        except ValueError:
+            print("Please enter a valid integer.")
+
+    if integers:
+        total_sum = sum(integers)
+        average = total_sum / len(integers)
+        maximum = max(integers)
+        minimum = min(integers)
+
+        print("Sum:", total_sum)
+        print("Average:", average)
+        print("Maximum:", maximum)
+        print("Minimum:", minimum)
+    else:
+        print("No integers were entered.")
+        
+integer_operations()
+def string_operations():
+    user_string = input("Enter a string: ")
+    length_of_string = len(user_string) # To find length of the string
+    print("Length of the string:", length_of_string)
+    reversed_string = user_string[::-1] #To reverse the string
+    print("Reversed string:", reversed_string)
+    alternate_upper = ''.join(char.upper() if i % 2 == 0 else char for i, char in enumerate(user_string)) #This will the alternate character to uppercase
+    print("Every alternate character in uppercase:", alternate_upper) 
+    vowels = "aeiouAEIOU"
+    vowel_count = sum(1 for char in user_string if char in vowels) # It will sum the vowels in the string
+    print("Number of vowels in the string:", vowel_count)
+    username = input("Enter your username: ")
+    dob = input("Enter your Date of Birth (dd-mon-yy): ")
+    password = username[:4] + dob[-2:] + "$"  
+    print("Generated Password:", password)
+string_operations()
+
+import math 
+
+def calculate_area():
+   
+    radius = float(input("Enter radius of the circle: "))
+    area_circle = 3.14 * radius * radius  
+    print("Area of Circle:", area_circle)
+
+   
+    base = float(input("Enter base of the parallelogram: "))
+    height = float(input("Enter height of the parallelogram: "))
+    area_parallelogram = base * height
+    print("Area of Parallelogram:", area_parallelogram)
+
+def calculate_square_root():
+   
+    num = int(input("Enter a number to find its square root: "))
+    if num >= 0:
+        square_root = math.sqrt(num) 
+        print("Square root of", num, "is", square_root)
+    else:
+        print("Cannot find square root of a negative number.")
+
+
+calculate_area()
+calculate_square_root()
+
+
